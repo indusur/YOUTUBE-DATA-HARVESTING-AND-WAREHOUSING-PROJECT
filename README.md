@@ -31,60 +31,60 @@
 
 **PROBLEM STATEMENT :**
 
-        >>Create a Streamlit application that allows users to access and analyze data from multiple YouTube channels. 
-        >> Extracting data using Youtube API and then Transforming it to a relational database like MySQL. For getting various info about youtube channels.FEATURES:
+   - Create a Streamlit application that allows users to access and analyze data from multiple YouTube channels. 
+   - Extracting data using Youtube API and then Transforming it to a relational database like MySQL. For getting various info about youtube channels.FEATURES:
 
 _**Data Collection**:_
 
-    •  Harvest data from YouTube channels and videos using the Google API Client.
+    - Harvest data from YouTube channels and videos using the Google API Client.
 
 _**_Data Storage:**__ 
 
-    • Store the collected data in a MySQL database.
+    - Store the collected data in a MySQL database.
 
 __**Data Analysis**:_ 
 
-    • Perform various analytical queries on the data.
+    -Perform various analytical queries on the data.
 
 _**Visualization:**_
 
-    • Visualize the data using Streamlit.
+    - Visualize the data using Streamlit.
 
 _**User Interface:**_
 
-    •  Interactive Streamlit interface for querying and viewing data.
+    -  Interactive Streamlit interface for querying and viewing data.
 
 **TECHNOLOGIES USED:**
 
-    • Python(https://www.python.org/)
+    -Python(https://www.python.org/)
     
-    • MySQL(https://www.mysql.com/)
+    -MySQL(https://www.mysql.com/)
     
-    • YouTube Data API(https://developers.google.com/youtube/v3)
+    - YouTube Data API(https://developers.google.com/youtube/v3)
     
-    •  Streamlit(https://docs.streamlit.io/library/api-reference)
+    - Streamlit(https://docs.streamlit.io/library/api-reference)
     
-    • Pandas(https://pandas.pydata.org/)
+    -Pandas(https://pandas.pydata.org/)
 
 **INSTALLATION VERSION:**
 
-      *   Python version 3.12.2
+      -   Python version 3.12.2
       
-      *   Streamlit  version 1.35.0
+      -   Streamlit  version 1.35.0
       
-      *   Mysql version 8.0.36
+      -  Mysql version 8.0.36
 
 **RUNNING OF INSTALLATION:**
 
 To run this project, you need to install the following packages:
 
-        >  pip install google-api-python-client
+        - pip install google-api-python-client
 	
-        >  pip install streamlit
+        -  pip install streamlit
 	
-        >  pip install mysql.connector python
+        -  pip install mysql.connector python
 	
-        >   pip install streamlit
+        -   pip install streamlit
 
 **TOOLS AND LIBRARIES USED:**
 
@@ -113,10 +113,10 @@ To run this project, you need to install the following packages:
 
 **STORAGE OF DATA:**
 
-	Once the information is gained it all the store in MySql database.Migration of data  to a SQL database for efficient querying and analysis.
-	Search and retrieval of data from the SQL database.Support for handling multiple YouTube channels and managing their data.
+   -Once the information is gained it all the store in MySql database.Migration of data  to a SQL database for efficient querying and analysis.
+    Search and retrieval of data from the SQL database.Support for handling multiple YouTube channels and managing their data.
 
 **STREAMLIT DASHBOARD:**
 
-	The above mentioned all informations are to be described in the Streamlit Dashboard and its functionalities to provide a user friendly interactions to visulaize the data.
+    -The above mentioned all informations are to be described in the Streamlit Dashboard and its functionalities to provide a user friendly interactions to visulaize the data.
 
