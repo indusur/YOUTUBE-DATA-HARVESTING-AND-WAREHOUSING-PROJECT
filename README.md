@@ -117,6 +117,7 @@ To run this project, you need to install the following packages:
     Search and retrieval of data from the SQL database.Support for handling multiple YouTube channels and managing their data.
 
 **STREAMLIT DASHBOARD:**
+   -The above mentioned all informations are to be described in the Streamlit Dashboard and its functionalities to provide a user friendly interactions to visulaize the data.
 
     -The above mentioned all informations are to be described in the Streamlit Dashboard and its functionalities to provide a user friendly interactions to visulaize the data.
 
