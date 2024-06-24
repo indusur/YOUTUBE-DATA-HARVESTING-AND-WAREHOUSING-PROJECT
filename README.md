@@ -2,8 +2,8 @@
 
 **CAPSTONE PROJECT: YOUTUBE DATA HARVESTING AND WAREHOUSING USING MySQL AND STREAMLIT**
 •** Github link **: https://github.com/indusur/INDUMATHI.S
-          (Watch full details about this project)
-      
+ (Watch full details about this project)
+ 
  **Demo video **:https://screenrec.com/share/o8qyPiV9tL
   
 **INTRODUCTION:**
@@ -12,19 +12,12 @@
 **TABLE OF CONTENTS:**
 
     1. Introduction
-        
     2. Problem statement
-    
     3. Features
-    
     4. Technologies Used
-    
     5. Installation Version
-    
     6. Running of Installation
-    
     7. Tools and Libraries Used
-    
     8. Workflow*
 
 **PROBLEM STATEMENT :**
