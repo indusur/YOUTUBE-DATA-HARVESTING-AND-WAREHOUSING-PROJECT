@@ -27,6 +27,7 @@ The YouTube Data Harvesting and Warehousing Project is designed to fetch data fr
  - Extracting data using Youtube API and then Transforming it to a relational database like MySQL. For getting various info about youtube channels.
 
  **FEATURES:**
+ 
 _**Data Collection**:_
   - Harvest data from YouTube channels and videos using the Google API Client.
 
@@ -34,6 +35,7 @@ _**Data Collection**:_
   - Store the collected data in a MySQL database.
 
 **Data Analysis**:
+
   -Perform various analytical queries on the data.
 
 **Visualization:**
@@ -43,7 +45,7 @@ _**Data Collection**:_
 -  Interactive Streamlit interface for querying and viewing data.
 
 **TECHNOLOGIES USED:**
-    	Python(https://www.python.org/)
+Python(https://www.python.org/)
      
     	MySQL(https://www.mysql.com/)
      
