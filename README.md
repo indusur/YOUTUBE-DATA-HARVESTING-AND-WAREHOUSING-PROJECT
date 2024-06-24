@@ -23,39 +23,35 @@
 
 **PROBLEM STATEMENT :**
  - Create a Streamlit application that allows users to access and analyze data from multiple YouTube channels. 
-   - Extracting data using Youtube API and then Transforming it to a relational database like MySQL. For getting various info about youtube channels.
+ - Extracting data using Youtube API and then Transforming it to a relational database like MySQL. For getting various info about youtube channels.
 
  **FEATURES:**
 _**Data Collection**:_
   - Harvest data from YouTube channels and videos using the Google API Client.
 
-_**_Data Storage:**__
+**_Data Storage:**
   - Store the collected data in a MySQL database.
 
-__**Data Analysis**:_ 
+**Data Analysis**:
    -Perform various analytical queries on the data.
 
-_**Visualization:**_
+**Visualization:**
  - Visualize the data using Streamlit.
 
-_**User Interface:**_
+**User Interface:**
 -  Interactive Streamlit interface for querying and viewing data.
 
 **TECHNOLOGIES USED:**
-    -Python(https://www.python.org/)
-    
-    -MySQL(https://www.mysql.com/)
-    
-    - YouTube Data API(https://developers.google.com/youtube/v3)
-    
-    - Streamlit(https://docs.streamlit.io/library/api-reference)
-    
-    -Pandas(https://pandas.pydata.org/)
+    	Python(https://www.python.org/)
+    	MySQL(https://www.mysql.com/)
+    	YouTube Data API(https://developers.google.com/youtube/v3)
+    	Streamlit(https://docs.streamlit.io/library/api-reference)
+    	Pandas(https://pandas.pydata.org/)
 
 **INSTALLATION VERSION:**
-         Python version 3.12.2
-         Streamlit  version 1.35.0
-         Mysql version 8.0.36
+        Python version 3.12.2
+        Streamlit  version 1.35.0
+	Mysql version 8.0.36
 
 **RUNNING OF INSTALLATION:**
 To run this project, you need to install the following packages:
@@ -98,5 +94,5 @@ To run this project, you need to install the following packages:
 **STREAMLIT DASHBOARD:**
    -The above mentioned all informations are to be described in the Streamlit Dashboard and its functionalities to provide a user friendly interactions to visulaize the data.
 
-    -The above mentioned all informations are to be described in the Streamlit Dashboard and its functionalities to provide a user friendly interactions to visulaize the data.
+    
 
