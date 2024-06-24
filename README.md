@@ -47,15 +47,22 @@ _**Data Collection**:_
 **TECHNOLOGIES USED:**
 
 Python(https://www.python.org/)
+
 MySQL(https://www.mysql.com/)
+
 YouTube Data API(https://developers.google.com/youtube/v3)
+
 Streamlit(https://docs.streamlit.io/library/api-reference)
+
 Pandas(https://pandas.pydata.org/)
 
 **INSTALLATION VERSION:**
-	Python version 3.12.2
-	Streamlit  version 1.35.0
- 	Mysql version 8.0.36
+
+Python version 3.12.2
+
+Streamlit  version 1.35.0
+ 	
+  Mysql version 8.0.36
 
 **RUNNING OF INSTALLATION:**
 
