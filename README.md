@@ -68,24 +68,17 @@ _**User Interface:**_
     -Pandas(https://pandas.pydata.org/)
 
 **INSTALLATION VERSION:**
-
-      -   Python version 3.12.2
-      
-      -   Streamlit  version 1.35.0
-      
-      -  Mysql version 8.0.36
+         Python version 3.12.2
+         Streamlit  version 1.35.0
+         Mysql version 8.0.36
 
 **RUNNING OF INSTALLATION:**
-
 To run this project, you need to install the following packages:
 
-        - pip install google-api-python-client
-	
-        -  pip install streamlit
-	
-        -  pip install mysql.connector python
-	
-        -   pip install streamlit
+        pip install google-api-python-client
+	pip install streamlit
+	pip install mysql.connector python
+	pip install streamlit
 
 **TOOLS AND LIBRARIES USED:**
 
