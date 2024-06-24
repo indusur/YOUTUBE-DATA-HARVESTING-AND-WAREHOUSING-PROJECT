@@ -32,7 +32,8 @@
 **PROBLEM STATEMENT :**
 
    - Create a Streamlit application that allows users to access and analyze data from multiple YouTube channels. 
-   - Extracting data using Youtube API and then Transforming it to a relational database like MySQL. For getting various info about youtube channels.FEATURES:
+   - Extracting data using Youtube API and then Transforming it to a relational database like MySQL. For getting various info about youtube channels.
+ **FEATURES:**
 
 _**Data Collection**:_
 
