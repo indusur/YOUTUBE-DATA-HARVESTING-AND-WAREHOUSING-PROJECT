@@ -9,6 +9,7 @@
  **Demo video **:https://screenrec.com/share/o8qyPiV9tL
   
 **INTRODUCTION:**
+
 	The YouTube Data Harvesting and Warehousing Project is designed to fetch data from YouTube using the Google API Client, store it in a MySQL database, and provide an interactive user interface for querying and visualizing the data using Streamlit.
 
 **TABLE OF CONTENTS:**
@@ -33,7 +34,7 @@ _**Data Collection**:_
   - Store the collected data in a MySQL database.
 
 **Data Analysis**:
-   -Perform various analytical queries on the data.
+  -Perform various analytical queries on the data.
 
 **Visualization:**
  - Visualize the data using Streamlit.
