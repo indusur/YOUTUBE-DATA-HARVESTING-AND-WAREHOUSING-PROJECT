@@ -10,44 +10,36 @@
 	The YouTube Data Harvesting and Warehousing Project is designed to fetch data from YouTube using the Google API Client, store it in a MySQL database, and provide an interactive user interface for querying and visualizing the data using Streamlit.
 
 **TABLE OF CONTENTS:**
-
-    1. Introduction
-    2. Problem statement
-    3. Features
-    4. Technologies Used
-    5. Installation Version
-    6. Running of Installation
-    7. Tools and Libraries Used
-    8. Workflow*
+1. Introduction
+2. Problem statement
+3. Features
+4. Technologies Used
+5. Installation Version
+6. Running of Installation
+7. Tools and Libraries Used
+8. Workflow*
 
 **PROBLEM STATEMENT :**
-
-   - Create a Streamlit application that allows users to access and analyze data from multiple YouTube channels. 
+ - Create a Streamlit application that allows users to access and analyze data from multiple YouTube channels. 
    - Extracting data using Youtube API and then Transforming it to a relational database like MySQL. For getting various info about youtube channels.
+
  **FEATURES:**
-
 _**Data Collection**:_
+  - Harvest data from YouTube channels and videos using the Google API Client.
 
-    - Harvest data from YouTube channels and videos using the Google API Client.
-
-_**_Data Storage:**__ 
-
-    - Store the collected data in a MySQL database.
+_**_Data Storage:**__
+  - Store the collected data in a MySQL database.
 
 __**Data Analysis**:_ 
-
-    -Perform various analytical queries on the data.
+   -Perform various analytical queries on the data.
 
 _**Visualization:**_
-
-    - Visualize the data using Streamlit.
+ - Visualize the data using Streamlit.
 
 _**User Interface:**_
-
-    -  Interactive Streamlit interface for querying and viewing data.
+-  Interactive Streamlit interface for querying and viewing data.
 
 **TECHNOLOGIES USED:**
-
     -Python(https://www.python.org/)
     
     -MySQL(https://www.mysql.com/)
