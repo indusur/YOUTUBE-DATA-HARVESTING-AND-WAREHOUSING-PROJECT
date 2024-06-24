@@ -109,7 +109,7 @@ To run this project, you need to install the following packages:
 
 **COLLECTION OF DATA:**
 
-	Retreiving data from youtube channels using Youtube API key and gaining the information which we required from the channels.
+  -Retreiving data from youtube channels using Youtube API key and gaining the information which we required from the channels.
 
 **STORAGE OF DATA:**
 
