@@ -47,9 +47,13 @@ _**Data Collection**:_
 **TECHNOLOGIES USED:**
 
 1.Python(https://www.python.org/)
+
 2.MySQL(https://www.mysql.com/)
+
 3.YouTube Data API(https://developers.google.com/youtube/v3)
+
 4.Streamlit(https://docs.streamlit.io/library/api-reference)
+
 5.Pandas(https://pandas.pydata.org/)
 
 **INSTALLATION VERSION:**
