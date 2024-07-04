@@ -64,7 +64,7 @@ def Channel_Info(channel_id):
             Channel_Description= item['snippet']['description'],
             Playlist_Id=item['contentDetails']['relatedPlaylists']['uploads']
         )
-        #Channel Table Insertion:   
+        #Channel Data Insertion:   
         cursor.execute("INSERT INTO channel_info (channel_name, channel_id, subscribe, views, total_videos, channel_description, playlist_id) VALUES (%s, %s, %s, %s, %s, %s, %s)",
                        (details['Channel_Name'], details['Channel_Id'], details['Subscribers'], details['Views'], details['Total_Videos'], details['Channel_Description'], details['Playlist_Id']))
         
