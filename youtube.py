@@ -65,7 +65,7 @@ def Channel_Info(channel_id):
             Playlist_Id=item['contentDetails']['relatedPlaylists']['uploads']
         )
         #Channel Data Insertion:   
-        cursor.execute("INSERT INTO channel_info (channel_name, channel_id, subscribe, views, total_videos, channel_description, playlist_id) VALUES (%s, %s, %s, %s, %s, %s, %s)",
+        cursor.execute("INSERT IGNORE INTO channel_info (channel_name, channel_id, subscribe, views, total_videos, channel_description, playlist_id) VALUES (%s, %s, %s, %s, %s, %s, %s)",
                        (details['Channel_Name'], details['Channel_Id'], details['Subscribers'], details['Views'], details['Total_Videos'], details['Channel_Description'], details['Playlist_Id']))
         
         mydb.commit()
@@ -165,7 +165,7 @@ def Get_Video_Details(Video_id):
             mysql_published_date = parsed_datetime.strftime('%Y-%m-%d %H:%M:%S')
 
         #Video Data Insertion:
-        cursor.execute("INSERT INTO video_details(channel_name, channel_id, video_id, title ,tags ,thumbnail , description, published_date, duration, views, likes, dislikes, comments) VALUES (%s, %s, %s, %s, %s, %s,  %s, %s, %s, %s,%s,%s,%s)",
+        cursor.execute("INSERT IGNORE INTO video_details(channel_name, channel_id, video_id, title ,tags ,thumbnail , description, published_date, duration, views, likes, dislikes, comments) VALUES (%s, %s, %s, %s, %s, %s,  %s, %s, %s, %s,%s,%s,%s)",
                (Data['channel_Name'], Data['Channel_Id'], Data['Video_Id'],Data['Title'],Data['Tags'], Data['Thumbnail'], Data['Description'],mysql_published_date, sql_duration, Data['Views'], Data['Likes'], Data['Dislikes'], Data['Comments']))
 
         mydb.commit()        
@@ -206,7 +206,7 @@ def get_comment_Details(get_Comment):
                     mysql_published_dates = parsed_datetime.strftime('%Y-%m-%d %H:%M:%S')
 
                     #Comment Data Insertion:
-                    cursor.execute("INSERT INTO comment_details (comment_id, video_id, comment_text, author, published_date) VALUES (%s, %s, %s, %s,%s)",
+                    cursor.execute("INSERT IGNORE INTO comment_details (comment_id, video_id, comment_text, author, published_date) VALUES (%s, %s, %s, %s,%s)",
                                (Comment_Det['Comment_ID'], Comment_Det['Video_Id'], Comment_Det['Comment_Text'], Comment_Det['Author_Name'],mysql_published_dates))
                     mydb.commit()
                     
@@ -270,26 +270,62 @@ def get_playlist_details(channel_id):
 #DEFINING OVERALL FUNCTION TO FETCH ALL DETAILS:
 
 def fetch_all_data(channel_id):
-    channel_info = Channel_Info(channel_id)
-    video_id=Get_Video_Id(channel_id)
-    playlist_details = get_playlist_details(channel_id)
-    video_details = Get_Video_Details(video_id)
-    comment_details = get_comment_Details(video_id)
+    try:
+        channel_info = Channel_Info(channel_id)
+        video_id=Get_Video_Id(channel_id)
+        playlist_details = get_playlist_details(channel_id)
+        video_details = Get_Video_Details(video_id)
+        comment_details = get_comment_Details(video_id)
 
 # CONVERT DICTIONARY TO DATAFRAME:
-    channel_df = pd.DataFrame([channel_info])
-    video_df = pd.DataFrame(video_id)
-    playlist_df = pd.DataFrame(playlist_details)
-    video_detail_df = pd.DataFrame(video_details)
-    comment_df = pd.DataFrame(comment_details)
-    
+    finally:
+        channel_df = pd.DataFrame([channel_info])
+        video_df = pd.DataFrame(video_id)
+        playlist_df = pd.DataFrame(playlist_details)
+        video_detail_df = pd.DataFrame(video_details)
+        comment_df = pd.DataFrame(comment_details)
+        
     return {
         "channel_details": channel_df,
         "video_details": video_df,
         "comment_details": comment_df,
         "playlist_details": playlist_df,
         "video_data": video_detail_df
-    }
+        }
+    return None
+
+# Update SQL statements:
+def clean_data(db_connection):
+    with db_connection.cursor() as cursor:
+        cursor.execute(
+            """
+            Update Channel 
+            SET Channel_name = COALESCE(NULLIF(Channel_name, ''), 'NA'),
+                Channel_Id = COALESCE(NULLIF(Channel_Id, ''), 'NA'),
+                Subscribers = COALESCE(NULLIF(Subscribers, ''), 0),
+                Views = COALESCE(NULLIF(Views, ''), 0),
+                Total_Videos = COALESCE(NULLIF(Total_Videos, ''), 0),
+                Channel_Description = COALESCE(NULLIF(Channel_description, ''), 'NA'),
+                Playlist_Id = COALESCE(NULLIF(Playlist_Id, ''), 'NA');
+
+                # Update Playlist table
+                UPDATE playlist
+                SET Title = COALESCE(NULLIF(Title, ''), 'NA');
+
+                # Update Comment_details table
+                UPDATE comment
+                SET Comment_Text = COALESCE(NULLIF(Comment_Text, ''), 'NA'),
+                    Author = COALESCE(NULLIF(Author, ''), 'NA');
+
+                # Update Video table
+                UPDATE Video
+                SET Title = COALESCE(NULLIF(Title, ''), 'NA'),
+                    Tags = COALESCE(NULLIF(Tags, ''), 'NA'),
+                    Thumbnail = COALESCE(NULLIF(Thumbnail, ''), 'NA'),
+                    Description = COALESCE(NULLIF(Description, ''), 'NA');
+                        """
+        )
+    db_connection.commit()
 
 #SETUP STREAMLIT-UI:
 st.set_page_config(page_title="YouTube Data Harvesting and Warehousing", layout="wide")
@@ -298,7 +334,7 @@ st.set_page_config(page_title="YouTube Data Harvesting and Warehousing", layout=
 def main():
     
     st.sidebar.header('NAVIGATION')
-    option=st.sidebar.radio("Select Option",['HOME','DATA COLLECTION','DATA ANALYSIS'])
+    option=st.sidebar.radio("Select Option",['HOME','DATA COLLECTION','UPDATE','DATA ANALYSIS'])
 
     #Home:
     if option == "HOME":
@@ -311,29 +347,73 @@ def main():
         st.markdown("Use the sidebar to navigate through different sections of the app.")
 
     #Data Collection:
-    elif option =="DATA COLLECTION":
+    if option =="DATA COLLECTION":
             st.subheader(':rainbow[YOUTUBE-DATA-HARVESTING-AND-WAREHOUSING USING MYSQL AND STREAMLIT]', divider='blue')
             channel_id = st.text_input("Enter the YouTube Channel ID to collect and store data")
-            
+           
             if st.button("Collect and store Data"):
-                st.success(f"Data for channel ID collected and stored successfully.")
-                details = fetch_all_data(channel_id)
                 
-                st.subheader('Channel Details')
-                st.write(details["channel_details"])
+                
+                if channel_id:
+                    st.success("Data for channel ID already exists")
+                   
+                    # Fetch all data for the channel_id
+                    details = fetch_all_data(channel_id)
 
-                st.subheader('Video Details')
-                st.write(details["video_data"])
+                     # Display Fetched Data    
+                    st.subheader('Channel Details')
+                    st.write(details["channel_details"])
 
-                st.subheader('Comment Details')
-                st.write(details["comment_details"])
+                    st.subheader('Video Details')
+                    st.write(details["video_data"])
 
-                st.subheader('Playlist Details')
-                st.write(details["playlist_details"])
+                    st.subheader('Comment Details')
+                    st.write(details["comment_details"])
 
+                    st.subheader('Playlist Details')
+                    st.write(details["playlist_details"])
+                
+                    st.success(f"Data for channel ID collected and stored successfully.")
+                else:
+                    st.error("PLease enter a valid channel ID")
+
+
+    if option =="UPDATE":
+            st.subheader(':rainbow[YOUTUBE-DATA-HARVESTING-AND-WAREHOUSING USING MYSQL AND STREAMLIT]', divider='blue')
+            channel_id = st.text_input("Enter the YouTube Channel ID to collect and store data")
+
+                
+            if channel_id:
+                    st.button("update")
+
+
+                    # Fetch all data for the channel_id
+                    details = fetch_all_data(channel_id)
+
+                    # Display Fetched Data    
+                    st.subheader('Channel Details')
+                    st.write(details["channel_details"])
+
+                    st.subheader('Video Details')
+                    st.write(details["video_data"])
+
+                    st.subheader('Comment Details')
+                    st.write(details["comment_details"])
+
+                    st.subheader('Playlist Details')
+                    st.write(details["playlist_details"])
+
+                    st.success("Data for channel ID Updated successfully")
+                        
+                   
+    
+
+
+                    
     #Data Analysis:       
     elif option == "DATA ANALYSIS":
         st.header("DATA ANALYSIS")
+        pass
 
         questions = [
                    "1. What are the names of all the videos and their corresponding channels?",
@@ -431,11 +511,12 @@ if __name__ == "__main__":
 # UC3LD42rjj-Owtxsa6PwGU5Q-streamlit 
 # UCTobknDmJWuwrf7pI15QBdg-praba murugesan 
 # UCQqmjKQBKQkRbWbSntYJX0Q-shabarinath Premlal
-# UCEfkbcwk-Y6Vel5zMEQhU1Q-Under an Hour - Projects with Aryen
 # UCvSZUp8XCT4Zlga2ctSOTMQ-Cyber Nanban
-#UCPYC5ihCdPmB-GuBGtX_qAw-Learn Photography in Tamil
 # UCq6-gHLaaLJSiyT8h-yh2Cg-PKCHELP
 #UCY6KjrDBN_tIRFT_QNqQbRQ-Madan Gowri
 
 #Demo video:https://screenrec.com/share/uMx0tliTek
 # https://github.com/indusur/INDUMATHI.S
+
+# UCEfkbcwk-Y6Vel5zMEQhU1Q-Under an Hour - Projects with Aryen
+#UCPYC5ihCdPmB-GuBGtX_qAw-Learn Photography in Tamil
